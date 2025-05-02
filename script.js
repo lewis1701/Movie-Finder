@@ -3,6 +3,8 @@ const api_key = "86fe9b3bf7a3da7d196a0d89f1815b69";
 const searchBtn = document.getElementById("search-button");
 const selectYear = document.getElementById("year");
 const selectGenre = document.getElementById("genre");
+const nextPage = document.getElementById("nextPageBtn")
+let pageNumber = 1;
 
 async function searchMovies() {
     const searchInput = document.getElementById("search-input");
@@ -12,7 +14,7 @@ async function searchMovies() {
 
     let genreId = '';
     let endpoint = "/search/movie";
-    let parameters = `?api_key=${api_key}`;
+    let parameters = `?api_key=${api_key}&page=${pageNumber}`;
 
     // Map genre name to TMDb genre ID
     switch (selectedGenreName) {
@@ -114,3 +116,8 @@ selectGenre.addEventListener("change", () => {
         searchMovies();
     }
 });
+
+nextPage.addEventListener("click", () => {
+    pageNumber+=1
+    searchMovies()
+})

@@ -444,3 +444,47 @@ h1 {
   .filter-container select option[value=""] {
       color: #888; /* Make the placeholder option look different */
   }
+
+  .pagination-controls {
+    display: flex; /* Use flexbox for easy centering */
+    justify-content: center; /* Center button horizontally */
+    padding: 30px 0 10px 0; /* Add space above and some below */
+    margin-top: 20px; /* Ensure space below movie results */
+    border-top: 1px solid #333; /* Optional separator line */
+  }
+
+  #nextPageBtn {
+    /* Appearance */
+    background-color: #e50914; /* Accent red */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Match other buttons/inputs */
+    cursor: pointer;
+  
+    /* Text & Font */
+    font-family: inherit; /* Use body font */
+    font-size: 1rem; /* Slightly smaller than search button */
+    font-weight: 600;
+    text-transform: uppercase; /* Optional: make text uppercase */
+    letter-spacing: 0.5px;
+  
+    /* Spacing & Sizing */
+    padding: 12px 25px; /* Adjust padding as needed */
+  
+    /* Effects */
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    outline: none;
+  }
+  
+  #nextPageBtn:hover {
+    background-color: #f6121d; /* Slightly brighter red on hover */
+  }
+  
+  #nextPageBtn:active {
+    transform: scale(0.98); /* Slight press down effect */
+  }
+  
+  /* Utility class to hide the button when not needed (add/remove with JS) */
+  #nextPageBtn.hidden {
+      display: none;
+  }
