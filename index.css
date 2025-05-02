@@ -209,3 +209,238 @@ h1 {
   }
 
 }
+
+/* style.css */
+
+/* Import a Google Font (Optional, but nice) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Basic Reset & Body Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif; /* Use imported font */
+  background-color: #141414; /* Very dark grey background */
+  color: #e5e5e5; /* Light grey text */
+  line-height: 1.6;
+  padding: 20px; /* Padding around the entire layout */
+}
+
+/* NEW: Main Layout Wrapper */
+.main-layout {
+  display: flex;
+  /* Align items to the top - this gets the filter near the h1/search */
+  align-items: flex-start;
+  gap: 30px; /* Space between filter and app container */
+  max-width: 1600px; /* Max width for the whole layout */
+  margin: 0 auto; /* Center the main layout */
+  padding: 20px 0; /* Add some vertical padding if needed */
+}
+
+/* NEW/MODIFIED: Filter Container Styling */
+.filter-container {
+  background-color: #1f1f1f; /* Match app container background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  /* Define a width for the filter column */
+  flex-basis: 250px; /* Starting width */
+  flex-shrink: 0; /* Prevent shrinking */
+  /* No height needed, it will grow with content */
+}
+
+.filter-container h3 {
+  color: #e50914; /* Accent color */
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* MODIFIED: Main App Container */
+.app-container {
+  /* No longer needs margin: auto as flex parent handles centering */
+  /* max-width remains useful if you want internal content limiting */
+  max-width: 1200px;
+  padding: 30px;
+  background-color: #1f1f1f; /* Slightly lighter dark shade for container */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+  /* Allow app container to grow and take remaining space */
+  flex-grow: 1;
+  /* Set a min-width if needed, e.g., min-width: 400px; */
+}
+
+
+/* Heading Styling (Keep as is) */
+h1 {
+  text-align: center;
+  color: #e50914; /* Netflix-like red for accent */
+  margin-bottom: 30px;
+  font-size: 2.8rem; /* Larger heading */
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+}
+
+/* Search Bar Styling (Keep as is) */
+.search-bar {
+  display: flex;
+  margin-bottom: 40px; /* More space below search */
+  border-radius: 5px;
+  overflow: hidden; /* Keep input/button corners neat */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#search-input {
+  flex-grow: 1;
+  padding: 15px 20px; /* More padding */
+  border: none; /* Remove border */
+  font-size: 1.1rem;
+  background-color: #333; /* Darker input background */
+  color: #e5e5e5;
+  outline: none;
+  border-right: 2px solid #e50914; /* Accent border */
+}
+
+#search-input::placeholder {
+  color: #888; /* Lighter placeholder text */
+}
+
+#search-button {
+  padding: 15px 30px; /* More padding */
+  background-color: #e50914; /* Accent red */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  outline: none;
+}
+
+#search-button:hover {
+  background-color: #f6121d; /* Slightly brighter red on hover */
+}
+#search-button:active {
+    transform: scale(0.98); /* Slight press down effect */
+}
+
+
+/* Movie Results Grid (Keep as is) */
+.results {
+  display: grid;
+  /* Responsive grid: Autofill columns min 200px wide, max 1fr */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px; /* Space between grid items */
+  margin-top: 30px;
+}
+
+/* Individual Movie Card Styling (Keep as is) */
+.movie-card {
+  background-color: #2d2d2d; /* Card background */
+  border-radius: 8px;
+  overflow: hidden; /* Important for image and effects */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default; /* Default cursor, change if cards become interactive */
+  display: flex; /* Use flexbox for vertical layout */
+  flex-direction: column; /* Stack items vertically */
+}
+
+.movie-card:hover {
+  transform: translateY(-10px) scale(1.03); /* Lift and slightly scale up on hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); /* Enhanced shadow on hover */
+}
+
+.movie-poster {
+  display: block;
+  width: 100%;
+  height: 300px; /* Fixed height for poster */
+  object-fit: cover; /* Cover the area, cropping if needed */
+  object-position: center top; /* Prioritize top of poster */
+  border-bottom: 3px solid #e50914; /* Accent border below poster */
+}
+
+/* Fallback for broken image links */
+.movie-poster[alt]:not([src]) {
+    background-color: #444; /* Show a background color */
+    /* Optional: Add text or an icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    content: attr(alt); /* Show alt text (limited support) */
+}
+
+/* Text content area within the card (Keep as is) */
+.movie-card h3,
+.movie-card p {
+  padding: 0 15px; /* Horizontal padding for text */
+  color: #ccc; /* Default slightly muted text color */
+}
+
+.movie-title {
+  font-size: 1.1rem;
+}
+
+.filter-container label {
+    display: block; /* Make labels take their own line */
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #aaa; /* Slightly muted label color */
+    margin-bottom: 8px; /* Space below label */
+    margin-top: 15px; /* Space above label (except the first one) */
+  }
+  
+  .filter-container label:first-of-type {
+      margin-top: 0; /* No top margin for the very first label */
+  }
+  
+  .filter-container select {
+    /* Layout & Box Model */
+    width: 100%; /* Make selects fill container width */
+    padding: 10px 15px; /* Comfortable padding */
+    padding-right: 35px; /* Add space for the custom arrow */
+    margin-bottom: 20px; /* Space below each select */
+    border-radius: 5px; /* Match search bar rounding */
+    border: 1px solid #444; /* Subtle border */
+  
+    /* Appearance */
+    background-color: #333; /* Match search input background */
+    color: #e5e5e5; /* Match input text color */
+    font-family: inherit; /* Use the body font */
+    font-size: 1rem; /* Standard font size */
+    cursor: pointer;
+  
+    /* Custom Arrow Styling */
+    appearance: none; /* Remove default system appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Simple white chevron down arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23cccccc" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+    outline: none; /* Remove default focus outline */
+    transition: border-color 0.2s ease; /* Smooth transition for focus */
+  }
+  
+  /* Hover State */
+  .filter-container select:hover {
+    border-color: #666; /* Slightly lighter border on hover */
+  }
+  
+  /* Focus State - Important for Accessibility */
+  .filter-container select:focus {
+    border-color: #e50914; /* Use accent color for focus border */
+    box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.3); /* Subtle glow effect */
+  }
+  
+  /* Styling for the default "--Select--" option */
+  .filter-container select option[value=""] {
+      color: #888; /* Make the placeholder option look different */
+  }
